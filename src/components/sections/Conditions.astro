@@ -1,0 +1,19 @@
+---
+import Section from "../Section.astro";
+import Gloss from "../Gloss.astro";
+import { glosses } from "../../data/site";
+---
+<Section id="umovy" class="conditions" rec="W-R002">
+  <div class="container conditions__grid">
+    <p class="conditions__figure tnum" aria-hidden="true">6</p>
+    <div class="conditions__text">
+      <h2>Не більше шести учнів у групі</h2>
+      <Gloss text={glosses.umovy} class="gloss--on-dark" />
+      <p class="conditions__lead">Групу збираємо за рівнем знань, а не за віком. Платите лише за відвідані заняття, а навчальні матеріали — безкоштовно.</p>
+      <dl class="conditions__list">
+        <div><dt>Формат</dt><dd>група, індивідуально або в парі</dd></div>
+        <div><dt>Розклад</dt><dd>гнучкий</dd></div>
+      </dl>
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,48 @@
+---
+import Section from "../Section.astro";
+import Gloss from "../Gloss.astro";
+import CallButton from "../CallButton.astro";
+import FutureLink from "../FutureLink.astro";
+import { glosses, programs, languages, futureNote } from "../../data/site";
+---
+<Section id="programy" class="programs" rec="W-R002">
+  <div class="container">
+    <div class="section-head">
+      <h2>Для малюків, школярів і дорослих</h2>
+      <Gloss text={glosses.programy} />
+    </div>
+    <div class="programs__body" data-tabs>
+      <div class="programs__tabs" role="tablist" aria-label="Програми" aria-orientation="vertical">
+        {programs.map((p, i) => (
+          <button type="button" class="programs__tab" role="tab" id={`tab-${p.id}`} aria-controls={`prog-${p.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} data-program={p.id}>
+            <span class="programs__tab-title">{p.title}</span>
+          </button>
+        ))}
+        <span class="programs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="programs__panels">
+        {programs.map((p, i) => (
+          <article class:list={["entry", { "is-active": i === 0 }]} id={`prog-${p.id}`} aria-labelledby={`title-${p.id}`} data-panel={p.id}>
+            <header class="entry__head">
+              <h3 class="entry__title" id={`title-${p.id}`}>{p.title}</h3>
+              <Gloss text={p.gloss} class="gloss--small" />
+            </header>
+            <ol class="entry__facts">
+              {p.facts.map((f) => <li>{f}</li>)}
+            </ol>
+            <div class="entry__actions">
+              <CallButton label="Записатися на пробне" />
+              <FutureLink note={futureNote} class="future">{p.more}</FutureLink>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="langs">
+      <p class="langs__label">Мови, яких навчаємо:</p>
+      <ul class="plain langs__list">
+        {languages.map((l) => <li class="langs__item"><span class="langs__own" lang={l.lang}>{l.own}</span> <span class="langs__uk">{l.uk}</span></li>)}
+      </ul>
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,40 @@
+---
+import Section from "../Section.astro";
+import Gloss from "../Gloss.astro";
+import CallButton from "../CallButton.astro";
+import MapIcon from "../MapIcon.astro";
+import { h1, glosses, phone, programs, addresses } from "../../data/site";
+const words = h1.split(" ");
+---
+<Section id="hero" class="hero" rec="W-R001,W-R010,G-R002,MA-R004,S-R003">
+  <div class="container hero__grid">
+    <div class="hero__head">
+      <h1 class="hero__title" data-rec="SEO-R003">{words.map((w, i) => <><span class="hero__word" style={`--i:${i}`}>{w}</span>{i < words.length - 1 ? " " : ""}</>)}</h1>
+      <Gloss text={glosses.h1} class="hero__gloss" />
+    </div>
+    <div class="switcher" role="group" aria-label="Мова підписів-перекладів на сторінці" data-switcher>
+      <button type="button" class="switcher__btn" lang="en" data-lang="en" aria-pressed="true">English</button>
+      <button type="button" class="switcher__btn" lang="es" data-lang="es" aria-pressed="false">Español</button>
+      <button type="button" class="switcher__btn" lang="de" data-lang="de" aria-pressed="false">Deutsch</button>
+    </div>
+    <div class="hero__offer">
+      <p class="hero__lead"><strong>Перше заняття — безкоштовно.</strong> Далі оплата лише за відвідані.</p>
+      <a class="hero__phone tnum" href={phone.href}>{phone.label}</a>
+      <CallButton class="hero__call" wide />
+    </div>
+    <div class="hero__strip">
+      <nav class="hero__who" aria-label="Програми для кого">
+        <p class="hero__strip-label">Для кого</p>
+        <ul class="plain hero__who-list">
+          {programs.map((p) => <li><a class="row-link" href={`#prog-${p.id}`} data-program={p.id}>{p.title}</a></li>)}
+        </ul>
+      </nav>
+      <div class="hero__where">
+        <p class="hero__strip-label">Де</p>
+        <ul class="plain hero__where-list" data-rec="W-R003">
+          {addresses.map((a) => <li><a class="row-link" href={a.map} rel="noopener" target="_blank"><MapIcon /><span>{a.short}</span><span class="visually-hidden"> (карта, нове вікно)</span></a></li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</Section>

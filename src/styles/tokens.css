@@ -1,0 +1,82 @@
+/* Hallmark · shape: custom (phrasebook page) · genre: editorial · theme: custom · job: book · idea: "Сторінка-розмовник: кожен заголовок підписаний перекладом мовою, якої тут навчають" · vibe: "світлий, точний, мовний, районна школа"
+ * paper: #F5F8F9 / field #93D3E1 · accent: #B8361F · display: Geologica · body: Geologica · outlier: Piazzolla Italic (переклади) · hero: голубе поле, великий H1 зліва, підпис-переклад з перемикачем EN/ES/DE, дзвінок справа внизу · nav: світла sticky, 5 якорів + номер + кнопка · footer: світлий компактний · imagery: none · signature: перемикач мови перекладу змінює підписи всіх заголовків
+ * axes: mid/geometric-sans/warm · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: V (no client photos), carried by type scale, the blue field of the logo and the live translation captions */
+/* Hallmark · waive 7b · white label on the red call button · concept.md veon-concept fixes on-accent #FFFFFF (client concept wins, docs/process/hallmark.md) */
+/* Hallmark · answered F4 · active translation language is an ink toggle, the red fill stays only on the call button */
+/* Client design tokens: from design/concept.md only (veon-concept: colors, fonts). */
+:root {
+  /* Colour (concept.md §5, Palette) */
+  --color-text: #15191C;          /* ink */
+  --color-bg: #F5F8F9;            /* paper */
+  --color-field: #93D3E1;         /* globe blue of the logo */
+  --color-well: #DCEFF4;          /* secondary surface */
+  --color-accent: #B8361F;        /* red pencil: call, active state, focus */
+  --color-accent-hover: #A12F1B;  /* accent one step darker */
+  --color-muted: #4A5560;         /* secondary text */
+  --color-on-accent: #FFFFFF;
+  --color-accent-ink: var(--color-on-accent);
+  --color-rule: #C3CED3;          /* hairline on paper */
+  --color-rule-strong: #15191C;   /* hairline on field */
+  --color-rule-dark: #3A4248;     /* hairline on ink */
+  --color-focus: var(--color-accent);
+  --color-focus-dark: var(--color-field);
+
+  /* Type */
+  --font-display: "Geologica", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Geologica", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-gloss: "Piazzolla", Georgia, "Times New Roman", serif;
+  --text-s: 0.875rem;
+  --text-m: 1rem;
+  --text-l: 1.5rem;
+  --text-xl: clamp(1.75rem, 1.2rem + 1.6vw, 2.25rem);
+  --text-section: clamp(2rem, 1.2rem + 2.2vw, 3.25rem);
+  --text-2xl: clamp(2.25rem, 1.4rem + 2.6vw, 3.5rem);
+  --text-display: clamp(2.75rem, 1rem + 5.6vw, 6rem);
+  --text-figure: clamp(10rem, 4rem + 20vw, 22rem);
+
+  /* Space scale (4/8) */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+  --section-y: var(--space-2xl);
+  --section-y-air: var(--space-3xl);
+
+  /* Layout */
+  --container: 1320px;
+  --gutter: 20px;
+  --gap: 16px;
+  --header-h: 60px;
+  --space: var(--gutter);
+  --radius: 8px;
+  --radius-pill: 999px;
+  --tap: 48px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-in: cubic-bezier(.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --dur: 600ms;
+
+  /* Layers */
+  --z-sticky-nav: 300;
+  --z-tooltip: 600;
+}
+@media (min-width: 48rem) {
+  :root { --gutter: 32px; --gap: 24px; --text-m: 1.125rem; }
+}
+@media (min-width: 64rem) {
+  :root { --header-h: 80px; --section-y: var(--space-3xl); --section-y-air: var(--space-4xl); }
+}
+@media (min-width: 90rem) {
+  :root { --gutter: 60px; }
+}

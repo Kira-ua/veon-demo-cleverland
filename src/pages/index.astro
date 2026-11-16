@@ -1,0 +1,68 @@
+---
+// Clever Land: the homepage demo. Design source: design/concept.md (phrasebook page).
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/sections/Hero.astro";
+import Programs from "../components/sections/Programs.astro";
+import Conditions from "../components/sections/Conditions.astro";
+import Start from "../components/sections/Start.astro";
+import Kindergarten from "../components/sections/Kindergarten.astro";
+import Contacts from "../components/sections/Contacts.astro";
+import { addresses, phone, socials } from "../data/site";
+
+const title = "Школа іноземних мов у Львові — Clever Land";
+const description = "Англійська, іспанська та німецька для дошкільнят, школярів і дорослих у Львові. Групи до 6 осіб, перше заняття безкоштовне. Тел. +38 093 675 54 44";
+
+const hours = [
+  { "@type": "OpeningHoursSpecification", dayOfWeek: ["Wednesday", "Thursday", "Friday"], opens: "08:30", closes: "20:30" },
+  { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "17:00" },
+];
+const tel = phone.href.replace("tel:", "");
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": "#organization",
+      name: "Clever Land",
+      description: "Школа іноземних мов у Львові: англійська, іспанська та німецька для дошкільнят, школярів і дорослих.",
+      telephone: tel,
+      areaServed: { "@type": "City", name: "Львів" },
+      knowsLanguage: ["en", "es", "de"],
+      sameAs: socials.map((s) => s.href),
+      department: addresses.map((a) => ({ "@id": `#${a.id}` })),
+    },
+    ...addresses.map((a) => ({
+      "@type": "LocalBusiness",
+      "@id": `#${a.id}`,
+      name: `Clever Land, ${a.street}`,
+      telephone: tel,
+      parentOrganization: { "@id": "#organization" },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: a.street,
+        addressLocality: "Львів",
+        postalCode: a.postal,
+        addressCountry: "UA",
+      },
+      openingHoursSpecification: hours,
+    })),
+    { "@type": "WebSite", name: "Clever Land", inLanguage: "uk", publisher: { "@id": "#organization" } },
+  ],
+};
+---
+<Base lang="uk" title={title} description={description} ogLocale="uk_UA">
+  <script slot="head" type="application/ld+json" data-rec="SEO-R004" set:html={JSON.stringify(jsonLd)} />
+  <Header slot="header" />
+  <Hero />
+  <Programs />
+  <Conditions />
+  <Start />
+  <Kindergarten />
+  <Contacts />
+  <Footer slot="footer" />
+  <script>
+    import "../scripts/page.ts";
+  </script>
+</Base>

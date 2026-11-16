@@ -1,0 +1,8 @@
+---
+// Interlinear translation caption under a Ukrainian heading (the "phrasebook" idea).
+// Not a heading itself; the hero switcher swaps all captions between English / Español / Deutsch.
+import type { Gloss as G } from "../data/site";
+interface Props { text: G; class?: string; }
+const { text, class: cls } = Astro.props;
+---
+<p class:list={["gloss", cls]} lang="en" data-gloss data-en={text.en} data-es={text.es} data-de={text.de}>{text.en}</p>

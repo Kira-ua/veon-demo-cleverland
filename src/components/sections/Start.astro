@@ -1,0 +1,26 @@
+---
+import Section from "../Section.astro";
+import Gloss from "../Gloss.astro";
+import CallButton from "../CallButton.astro";
+import { glosses } from "../../data/site";
+---
+<Section id="start" class="start" rec="W-R001">
+  <div class="container">
+    <div class="section-head">
+      <h2>Перше заняття — безкоштовно</h2>
+      <Gloss text={glosses.start} />
+    </div>
+    <div class="route">
+      <span class="route__line" data-reveal aria-hidden="true"></span>
+      <ol class="route__steps">
+        <li>Телефонуєте нам</li>
+        <li>Обираєте мову та зручний час</li>
+        <li>Приходите на пробне заняття</li>
+      </ol>
+    </div>
+    <div class="start__action">
+      <CallButton label="Записатися на пробне" />
+      <p class="start__note">Далі — навчання з оплатою лише за відвідані заняття.</p>
+    </div>
+  </div>
+</Section>

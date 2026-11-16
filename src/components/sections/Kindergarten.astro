@@ -1,0 +1,28 @@
+---
+import Section from "../Section.astro";
+import Gloss from "../Gloss.astro";
+import CallButton from "../CallButton.astro";
+import FutureLink from "../FutureLink.astro";
+import { glosses, futureNote } from "../../data/site";
+---
+<Section id="sadochok" class="kinder" rec="W-R004">
+  <div class="container kinder__grid">
+    <div class="kinder__head">
+      <h2>Міні-садок на пів дня</h2>
+      <Gloss text={glosses.sadochok} />
+      <p class="kinder__time tnum"><time datetime="09:30">9:30</time>–<time datetime="13:30">13:30</time></p>
+    </div>
+    <div class="kinder__body">
+      <dl class="facts">
+        <div><dt>Дні</dt><dd>з понеділка по п’ятницю</dd></div>
+        <div><dt>Тривалість</dt><dd>4 години</dd></div>
+        <div><dt>Вартість</dt><dd>100 грн за день, оплата за днями</dd></div>
+        <div><dt>Де</dt><dd>Сихів</dd></div>
+      </dl>
+      <div class="kinder__actions">
+        <CallButton label="Запитати про місця" />
+        <FutureLink note={futureNote} class="future">Детальніше про садочок</FutureLink>
+      </div>
+    </div>
+  </div>
+</Section>

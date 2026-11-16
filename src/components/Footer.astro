@@ -1,0 +1,31 @@
+---
+import Logo from "./Logo.astro";
+import FutureLink from "./FutureLink.astro";
+import { addresses, phone, socials, futurePages, futureNote } from "../data/site";
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <Logo size="footer" />
+      <p class="site-footer__line">Школа іноземних мов у Львові: англійська, іспанська, німецька.</p>
+    </div>
+    <div class="site-footer__col">
+      <h2 class="site-footer__head">Зв’язок</h2>
+      <ul class="plain">
+        <li><a class="text-link tnum" href={phone.href}>{phone.label}</a></li>
+        {addresses.map((a) => <li><a class="text-link" href={a.map} rel="noopener" target="_blank">{a.street}<span class="visually-hidden"> (карта, нове вікно)</span></a></li>)}
+        {socials.map((s) => <li><a class="text-link" href={s.href} rel="noopener" target="_blank">{s.name}<span class="visually-hidden"> (нове вікно)</span></a></li>)}
+      </ul>
+    </div>
+    <div class="site-footer__col site-footer__col--pages">
+      <h2 class="site-footer__head">Сторінки</h2>
+      <ul class="plain site-footer__pages">
+        {futurePages.map((p) => <li><FutureLink note={futureNote} class="future">{p}</FutureLink></li>)}
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__base">
+    <p>© {year} Clever Land</p>
+  </div>
+</footer>

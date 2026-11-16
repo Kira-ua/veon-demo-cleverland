@@ -1,0 +1,42 @@
+---
+import Section from "../Section.astro";
+import Gloss from "../Gloss.astro";
+import CallButton from "../CallButton.astro";
+import MapIcon from "../MapIcon.astro";
+import { glosses, addresses, phone, socials } from "../../data/site";
+---
+<Section id="kontakty" class="contacts" rec="W-R003,W-R005,G-R003,S-R004,MA-R004">
+  <div class="container">
+    <div class="section-head">
+      <h2>Дві адреси у Львові</h2>
+      <Gloss text={glosses.kontakty} />
+    </div>
+    <ul class="plain contacts__addresses">
+      {addresses.map((a) => (
+        <li class="address">
+          <p class="address__street">{a.short}</p>
+          <p class="address__full">{a.full}</p>
+          <a class="btn btn--quiet" href={a.map} rel="noopener" target="_blank"><MapIcon /><span>Відкрити на карті</span><span class="visually-hidden"> (нове вікно)</span></a>
+        </li>
+      ))}
+    </ul>
+    <div class="contacts__bottom">
+      <div class="contacts__hours">
+        <h3 class="contacts__sub">Графік</h3>
+        <p class="tnum">Середа — п’ятниця: 8:30–20:30<br />Субота: 10:00–17:00</p>
+        <p class="contacts__note">Про інші дні запитайте телефоном.</p>
+      </div>
+      <div class="contacts__call">
+        <h3 class="contacts__sub">Запис на пробне заняття</h3>
+        <a class="contacts__phone tnum" href={phone.href}>{phone.label}</a>
+        <CallButton />
+      </div>
+      <div class="contacts__social">
+        <h3 class="contacts__sub">Ми в соцмережах</h3>
+        <ul class="plain contacts__social-list">
+          {socials.map((s) => <li><a class="text-link" href={s.href} rel="noopener" target="_blank">{s.name}<span class="visually-hidden"> (нове вікно)</span></a></li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</Section>

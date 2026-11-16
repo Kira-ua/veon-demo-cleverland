@@ -1,0 +1,47 @@
+---
+// Fonts: self-hosted via @fontsource (OFL), only the faces in use; unicode-range means the browser fetches only cyrillic/latin files the page needs. Order: tokens -> base -> client styles.
+import "@fontsource/geologica/400.css";
+import "@fontsource/geologica/700.css";
+import "@fontsource/piazzolla/400-italic.css";
+import "../styles/tokens.css";
+import "../styles/global.css";
+import "../styles/site.css";
+import geologica700 from "@fontsource/geologica/files/geologica-cyrillic-700-normal.woff2?url";
+
+interface Props { lang: string; title: string; description: string; canonical?: string; ogLocale?: string; }
+const { lang, title, description, canonical, ogLocale } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add("js")</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="preload" href={geologica700} as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <meta name="theme-color" content="#93D3E1" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {ogLocale && <meta property="og:locale" content={ogLocale} />}
+    <meta property="og:image" content="/img/og-cover.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="robots" content="noindex" />
+    <slot name="head" />
+    <style is:global>
+      html { overflow-x: clip; }
+      body { overflow-x: clip; }
+    </style>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">{lang.startsWith("uk") ? "До змісту" : lang.startsWith("ru") ? "К содержанию" : "Skip to content"}</a>
+    <slot name="header" />
+    <main id="main"><slot /></main>
+    <slot name="footer" />
+    <script src="../scripts/reveal.ts"></script>
+  </body>
+</html>
